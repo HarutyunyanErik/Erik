@@ -1,0 +1,22 @@
+def shell_sort(arr):
+    n = len(arr)
+    gap = n//2
+    while gap > 0:
+        for i in range(gap, n):
+            a = arr[i]
+            j = i
+            while j >= gap and arr[j-gap] > a:
+                arr[j] = arr[j-gap]
+                j -= gap
+            arr[j] = a
+            print(arr[j])
+        gap //= 2
+
+    return arr
+
+
+
+arr1 = [23, 12, 45, 34, 56, 7, 6, 25]
+print(shell_sort(arr1))
+
+
