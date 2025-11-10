@@ -1,0 +1,26 @@
+def bfs(graph, start):
+    visited = set()
+    q = [start]
+    
+    while q:
+        n = q.pop(0)
+        
+        if n not in visited:
+            print(n)
+            visited.add(n)
+            
+            for i in graph[n]:
+                if i not in visited:
+                    q.append(i)
+                    
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': [],
+    'F': []
+}
+
+bfs(graph, 'A')
