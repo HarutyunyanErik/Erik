@@ -1,0 +1,21 @@
+def dfs(graf, k, v = None):
+    if v is None:
+        v = set()
+    v.add(k)
+    print(k)
+    for i in graf[k]:
+        if i not in v:
+            dfs(graf, i, v)
+        
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': [],
+    'F': []
+}
+
+dfs(graph, 'A')
+
