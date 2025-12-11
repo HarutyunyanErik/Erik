@@ -1,0 +1,17 @@
+vertices = ['A', 'B', 'C', 'D']
+inf = float('inf')
+dist = [
+    [0, 3, inf, 5],
+    [2, 0, inf, 4],
+    [inf, 1, 0, inf],
+    [inf, inf, 2, 0]
+]
+
+for k in range(len(vertices)):
+    for i in range(len(vertices)):
+        for j in range(len(vertices)):
+            if dist[i][k] + dist[k][j] < dist[i][j]:
+                dist[i][j] = dist[i][k] + dist[k][j]
+
+for row in dist:
+    print(row)
