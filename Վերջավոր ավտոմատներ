@@ -1,0 +1,23 @@
+dfa = {
+    "states": {"A", "B", "C"},
+    "alphabet": {"0", "1"},
+    "start": "A",
+    "accept": {"C"},
+    "transitions": {
+        ("A", "0"): "A",
+        ("A", "1"): "B",
+        ("B", "0"): "C",
+        ("B", "1"): "A",
+        ("C", "0"): "C",
+        ("C", "1"): "C"
+    }
+}
+
+def run_dfa(dfa, s):
+    state = dfa["start"]
+    for ch in s:
+        state = dfa["transitions"][(state, ch)]
+    return state in dfa["accept"]
+
+print(run_dfa(dfa, "110"))
+print(run_dfa(dfa, "1010"))
