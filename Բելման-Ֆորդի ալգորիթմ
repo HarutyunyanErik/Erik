@@ -1,0 +1,26 @@
+graph = [
+    ('A', 'B', 4),
+    ('A', 'C', 2),
+    ('B', 'C', 3),
+    ('B', 'D', 2),
+    ('B', 'E', 3),
+    ('C', 'B', 1),
+    ('C', 'D', 4),
+    ('C', 'E', 5),
+    ('E', 'D', -5)
+]
+
+def bellman_ford(vertices, edges, start):
+    dist = {v: float('inf') for v in vertices}
+    dist[start] = 0
+    for _ in range(len(vertices)-1):
+        for u, v, w in edges:
+            if dist[u] + w < dist[v]:
+                dist[v] = dist[u] + w
+    for u, v, w in edges:
+        if dist[u] + w < dist[v]:
+            return "Negative cycle detected"
+    return dist
+
+vertices = ['A', 'B', 'C', 'D', 'E']
+print(bellman_ford(vertices, graph, 'A'))
