@@ -1,0 +1,28 @@
+graph = {
+    'A': {'B': 4, 'C': 2},
+    'B': {'C': 1, 'D': 5},
+    'C': {'B': 3, 'D': 8, 'E': 10},
+    'D': {'E': 2},
+    'E': {}
+}
+
+def dijkstra(graph, start):
+    dist = {v: float('inf') for v in graph}
+    dist[start] = 0
+    visited = set()
+
+    while len(visited) < len(graph):
+        v = None
+        for node in graph:
+            if node not in visited and (v is None or dist[node] < dist[v]):
+                v = node
+
+        visited.add(v)
+
+        for n, w in graph[v].items():
+            if dist[v] + w < dist[n]:
+                dist[n] = dist[v] + w
+
+    return dist
+
+print(dijkstra(graph, 'A'))
