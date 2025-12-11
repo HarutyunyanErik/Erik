@@ -1,0 +1,22 @@
+def jarvis_march(points):
+    if len(points) < 3:
+        return points
+
+    hull = []
+    l = min(range(len(points)), key=lambda i: points[i][0])
+    p = l
+    while True:
+        hull.append(points[p])
+        q = (p + 1) % len(points)
+        for i in range(len(points)):
+            cross = (points[i][1] - points[p][1]) * (points[q][0] - points[p][0]) - \
+                    (points[i][0] - points[p][0]) * (points[q][1] - points[p][1])
+            if cross > 0:
+                q = i
+        p = q
+        if p == l:
+            break
+    return hull
+
+points = [(0,0), (1,1), (2,2), (0,2), (2,0), (1,2)]
+print(jarvis_march(points))
